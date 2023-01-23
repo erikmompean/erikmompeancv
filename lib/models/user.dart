@@ -1,14 +1,15 @@
 class User {
-  final bool isFirstTime;
+  final bool language;
 
-  User({required this.isFirstTime});
+  User({required this.language});
 
   Map<String, dynamic> toJson() {
     return {
-      'isFirstTime': isFirstTime,
+      // TODO cambiar por idioma
+      'language': language.toString(),
     };
   }
 
   static User fromJson(Map<String, dynamic> json) =>
-      User(isFirstTime: json['isFirstTime']);
+      User(language: json['language'] == true);
 }

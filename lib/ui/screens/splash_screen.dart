@@ -25,7 +25,7 @@ class SplashScreen extends StatelessWidget {
           if (state is SplashFinishedLoadingState) {
             var user = state.user;
             NavigationService.instance.navigateToReplacement(
-                user.isFirstTime ? Routes.start : Routes.main);
+                user.language ? Routes.start : Routes.main);
           }
         },
         child: BlocBuilder(

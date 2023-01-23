@@ -2,9 +2,12 @@ import 'package:erikmompean/bloc/splash_screen_bloc/splash_screen_state.dart';
 import 'package:erikmompean/bloc/start_screen_bloc/start_screen_bloc.dart';
 import 'package:erikmompean/bloc/start_screen_bloc/start_screen_event.dart';
 import 'package:erikmompean/bloc/start_screen_bloc/start_screen_state.dart';
+import 'package:erikmompean/enums/languages.dart';
 import 'package:erikmompean/navigation_service.dart';
+import 'package:erikmompean/resources/app_images.dart';
 import 'package:erikmompean/ui/widgets/app_logo.dart';
-import 'package:erikmompean/ui/widgets/app_text.dart';
+import 'package:erikmompean/ui/widgets/language_button.dart';
+import 'package:erikmompean/ui/widgets/language_switch_explanation.dart';
 import 'package:erikmompean/utils/app_colors.dart';
 import 'package:erikmompean/utils/app_constants.dart';
 import 'package:erikmompean/utils/routes.dart';
@@ -26,7 +29,7 @@ class StartScreen extends StatelessWidget {
           if (state is SplashFinishedLoadingState) {
             var user = state.user;
             NavigationService.instance.navigateToReplacement(
-                user.isFirstTime ? Routes.start : Routes.main);
+                user.language ? Routes.start : Routes.main);
           }
         },
         child: BlocBuilder(
@@ -38,42 +41,57 @@ class StartScreen extends StatelessWidget {
                 bloc.add(StartScreenInitializeEvent());
               }
 
-              return body();
+              return Center(child: screen(bloc));
             }),
       ),
     );
   }
 
-  Widget body() {
+  Widget screen(StartScreenBloc bloc) {
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Hero(
-                  tag: AppConstants.logoHeroTag,
-                  child: AppLogo(),
-                ),
-              ],
+            Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Hero(
+                    tag: AppConstants.logoHeroTag,
+                    child: AppLogo(),
+                  ),
+                ],
+              ),
             ),
-            const SizedBox(
-              height: 20,
-            ),
-            const AppText(
-              color: AppColors.text,
-              text: 'Esta web esta hecha por mi usando Flutter',
-              size: 22,
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const AppText(
-              color: AppColors.text,
-              text: 'Antes de empezar... Elige un idioma:',
-              size: 22,
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const LanguageSwitchExplanation(),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      LanguageButton(
+                        imagePath: AppImages.en,
+                        isSelected: true,
+                        onTap: () => bloc.add(StartScreenSelectLanguageEvent(
+                            language: Languages.en)),
+                      ),
+                      const SizedBox(width: 20),
+                      LanguageButton(
+                        imagePath: AppImages.es,
+                        onTap: () => bloc.add(StartScreenSelectLanguageEvent(
+                            language: Languages.en)),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ],
         ),

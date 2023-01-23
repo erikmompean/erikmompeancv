@@ -46,6 +46,6 @@ class SplashScreenBloc extends Bloc<SplashScreenEvent, SplashScreenState> {
   }
 
   User _createUser() {
-    return User(isFirstTime: true);
+    return User(language: true);
   }
 }
