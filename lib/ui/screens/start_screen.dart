@@ -3,14 +3,12 @@ import 'package:erikmompean/bloc/start_screen_bloc/start_screen_bloc.dart';
 import 'package:erikmompean/bloc/start_screen_bloc/start_screen_event.dart';
 import 'package:erikmompean/bloc/start_screen_bloc/start_screen_state.dart';
 import 'package:erikmompean/enums/languages.dart';
-import 'package:erikmompean/navigation_service.dart';
 import 'package:erikmompean/resources/app_images.dart';
 import 'package:erikmompean/ui/widgets/app_logo.dart';
 import 'package:erikmompean/ui/widgets/language_button.dart';
 import 'package:erikmompean/ui/widgets/language_switch_explanation.dart';
 import 'package:erikmompean/utils/app_colors.dart';
 import 'package:erikmompean/utils/app_constants.dart';
-import 'package:erikmompean/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -27,9 +25,9 @@ class StartScreen extends StatelessWidget {
         bloc: bloc,
         listener: (context, state) {
           if (state is SplashFinishedLoadingState) {
-            var user = state.user;
-            NavigationService.instance.navigateToReplacement(
-                user.language ? Routes.start : Routes.main);
+            // var user = state.user;
+            // NavigationService.instance.navigateToReplacement(
+            //     user.language ? Routes.start : Routes.main);
           }
         },
         child: BlocBuilder(

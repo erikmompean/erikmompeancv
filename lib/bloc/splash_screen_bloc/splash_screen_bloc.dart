@@ -1,6 +1,7 @@
 import 'package:erikmompean/app_locator.dart';
 import 'package:erikmompean/bloc/splash_screen_bloc/splash_screen_event.dart';
 import 'package:erikmompean/bloc/splash_screen_bloc/splash_screen_state.dart';
+import 'package:erikmompean/enums/languages.dart';
 import 'package:erikmompean/models/user.dart';
 import 'package:erikmompean/navigation_service.dart';
 import 'package:erikmompean/repositories/user_repository.dart';
@@ -27,7 +28,7 @@ class SplashScreenBloc extends Bloc<SplashScreenEvent, SplashScreenState> {
 
     // Just to make sure users saw loading screen (This is not a good practise)
     await Future.delayed(const Duration(seconds: 2));
-    
+
     emit(SplashFinishedLoadingState(user));
   }
 
@@ -46,6 +47,6 @@ class SplashScreenBloc extends Bloc<SplashScreenEvent, SplashScreenState> {
   }
 
   User _createUser() {
-    return User(language: true);
+    return User(language: Languages.none);
   }
 }

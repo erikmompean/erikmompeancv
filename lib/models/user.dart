@@ -1,5 +1,7 @@
+import 'package:erikmompean/enums/languages.dart';
+
 class User {
-  final bool language;
+  final Languages language;
 
   User({required this.language});
 
@@ -11,5 +13,5 @@ class User {
   }
 
   static User fromJson(Map<String, dynamic> json) =>
-      User(language: json['language'] == true);
+      User(language: LanguageExtension.fromString(json['language']));
 }

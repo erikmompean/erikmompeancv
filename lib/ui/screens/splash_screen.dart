@@ -1,6 +1,7 @@
 import 'package:erikmompean/bloc/splash_screen_bloc/splash_screen_bloc.dart';
 import 'package:erikmompean/bloc/splash_screen_bloc/splash_screen_event.dart';
 import 'package:erikmompean/bloc/splash_screen_bloc/splash_screen_state.dart';
+import 'package:erikmompean/enums/languages.dart';
 import 'package:erikmompean/navigation_service.dart';
 import 'package:erikmompean/ui/widgets/app_logo.dart';
 import 'package:erikmompean/utils/app_colors.dart';
@@ -25,7 +26,9 @@ class SplashScreen extends StatelessWidget {
           if (state is SplashFinishedLoadingState) {
             var user = state.user;
             NavigationService.instance.navigateToReplacement(
-                user.language ? Routes.start : Routes.main);
+                user.language != Languages.none
+                    ? Routes.main
+                    : Routes.start);
           }
         },
         child: BlocBuilder(
