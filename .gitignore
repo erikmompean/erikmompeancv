@@ -45,6 +45,8 @@ app.*.map.json
 
 linux/*
 windows/*
+web/*
+macos/*
 lib/ui/screens/start_screen.dart
 linux/flutter/generated_plugin_registrant.cc
 linux/flutter/generated_plugin_registrant.h
