@@ -97,3 +97,17 @@ class StartScreen extends StatelessWidget {
     );
   }
 }
+
+class AppButton extends StatefulWidget {
+  AppButton({Key? key}) : super(key: key);
+
+  @override
+  _AppButtonState createState() => _AppButtonState();
+}
+
+class _AppButtonState extends State<AppButton> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
