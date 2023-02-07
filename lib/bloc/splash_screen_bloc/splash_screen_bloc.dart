@@ -37,11 +37,6 @@ class SplashScreenBloc extends Bloc<SplashScreenEvent, SplashScreenState> {
     NavigationService.instance.navigateTo(Routes.start);
   }
 
-  @override
-  void dispose() {
-    // TODO: implement dispose
-  }
-
   Future<bool> _saveUser(UserRepository userRepository, User user) async {
     return await userRepository.setUser(user);
   }

@@ -1,25 +1,26 @@
 import 'package:erikmompean/app_locator.dart';
-import 'package:erikmompean/bloc/main_screen_bloc/main_screen_bloc.dart';
+import 'package:erikmompean/bloc/curriculum_screen_bloc/curriculum_screen_bloc.dart';
 import 'package:erikmompean/bloc/start_screen_bloc/start_screen_bloc.dart';
 import 'package:erikmompean/repositories/user_repository.dart';
-import 'package:erikmompean/ui/screens/main_screen.dart';
+import 'package:erikmompean/ui/screens/curriculum_screen.dart';
 import 'package:erikmompean/ui/screens/not_found_screen.dart';
 import 'package:erikmompean/ui/screens/start_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Routes {
-  static const String main = '/main';
+  static const String curriculum = '/curriculum';
   static const String start = '/start';
 
   static Route generateAppRoute(RouteSettings routeSettings) {
     var routePath = _getRoutePath(routeSettings);
     switch (routePath) {
-      case main:
+      case curriculum:
         return PageRouteBuilder(
-            pageBuilder: (context, _, __) => BlocProvider<MainScreenBloc>(
-                  create: (_) => MainScreenBloc(),
-                  child: const MainScreen(),
+            transitionsBuilder: transition,
+            pageBuilder: (context, _, __) => BlocProvider<CurriculumScreenBloc>(
+                  create: (_) => CurriculumScreenBloc(),
+                  child: const CurriculumScreen(),
                 ));
       case start:
         return PageRouteBuilder(

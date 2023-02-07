@@ -9,5 +9,5 @@ class AppColors {
   static const Color text = Colors.black;
   static const Color text2 = Color(0xffBBBBBB);
   static const Color text3 = Colors.white60;
-
+  static const Color contrastedText = Colors.white;
 }

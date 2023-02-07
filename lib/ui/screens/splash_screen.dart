@@ -27,7 +27,7 @@ class SplashScreen extends StatelessWidget {
             var user = state.user;
             NavigationService.instance.navigateToReplacement(
                 user.language != Languages.none
-                    ? Routes.main
+                    ? Routes.curriculum
                     : Routes.start);
           }
         },

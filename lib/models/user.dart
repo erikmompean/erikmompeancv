@@ -1,14 +1,15 @@
 import 'package:erikmompean/enums/languages.dart';
 
 class User {
-  final Languages language;
+  Languages language;
 
   User({required this.language});
 
+  User.createDefault({this.language = Languages.none});
+
   Map<String, dynamic> toJson() {
     return {
-      // TODO cambiar por idioma
-      'language': language.toString(),
+      'language': language.name,
     };
   }
 

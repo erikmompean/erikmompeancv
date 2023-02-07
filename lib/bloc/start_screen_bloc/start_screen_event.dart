@@ -9,3 +9,5 @@ class StartScreenSelectLanguageEvent extends StartScreenEvent {
 
   StartScreenSelectLanguageEvent({required this.language});
 }
+
+class StartScreeenContiunuePressedEvent extends StartScreenEvent {}
