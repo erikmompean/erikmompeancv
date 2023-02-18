@@ -17,7 +17,8 @@ class MainProfileImage extends StatelessWidget {
               child: Container(
                 height: 420,
                 width: 300,
-                color: const Color(0xFF9e9e9e),
+                // color: const Color(0xFF9e9e9e),
+                color: const Color(0xFFC5C5C5),
               ),
             ),
           ),

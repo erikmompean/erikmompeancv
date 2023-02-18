@@ -3,6 +3,7 @@ import 'package:erikmompean/bloc/curriculum_screen_bloc/Curriculum_screen_state.
 import 'package:erikmompean/bloc/curriculum_screen_bloc/curriculum_screen_bloc.dart';
 import 'package:erikmompean/ui/widgets/app_logo.dart';
 import 'package:erikmompean/ui/widgets/app_text.dart';
+import 'package:erikmompean/ui/widgets/flip_widget.dart';
 import 'package:erikmompean/ui/widgets/main_profile_image.dart';
 import 'package:erikmompean/utils/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +50,7 @@ class CurriculumScreen extends StatelessWidget {
               Row(
                 children: [
                   leftPanel(),
-                  const MainProfileImage(),
+                  FlipWidget(child: MainProfileImage()),
                 ],
               ),
             ],
