@@ -7,10 +7,13 @@ import 'package:erikmompean/ui/widgets/app_text.dart';
 import 'package:erikmompean/ui/widgets/flip_widget.dart';
 import 'package:erikmompean/ui/widgets/main_profile_image.dart';
 import 'package:erikmompean/utils/app_colors.dart';
+import 'package:erikmompean/utils/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CurriculumScreen extends StatelessWidget {
+  final double titleSize = 70;
   const CurriculumScreen({super.key});
 
   @override
@@ -26,7 +29,7 @@ class CurriculumScreen extends StatelessWidget {
               bloc.add(CurriculumInitializeEvent());
             }
             if (state is CurriculumStateIdle) {
-              return body(context, state);
+              return body(context, state, bloc);
             }
 
             return const Center(child: AppLoader());
@@ -34,34 +37,76 @@ class CurriculumScreen extends StatelessWidget {
     );
   }
 
-  Widget body(BuildContext context, CurriculumStateIdle state) {
-    return SingleChildScrollView(
-      controller: state.scrollController,
-      physics: const BouncingScrollPhysics(),
-      child: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  AppLogo(),
-                ],
-              ),
-              const SizedBox(
-                height: 50,
-              ),
-              Row(
-                children: [
-                  rightPanel(),
-                  const FlipWidget(child: MainProfileImage()),
-                ],
-              ),
-              const SizedBox(
-                height: 1000,
-              ),
-            ],
+  Widget body(BuildContext context, CurriculumStateIdle state,
+      CurriculumScreenBloc bloc) {
+    return NotificationListener(
+      onNotification: (notification) {
+        print(state.scrollController.position.pixels);
+        bloc.add(CurriculumScrollUpdatedEvent(
+            scrollPosition: state.scrollController.position.pixels));
+        return true;
+      },
+      child: SingleChildScrollView(
+        controller: state.scrollController,
+        physics: const BouncingScrollPhysics(),
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    AppLogo(),
+                  ],
+                ),
+                const SizedBox(
+                  height: 50,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    FlipWidget(
+                      revert: true,
+                      angle: state.angle,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Erik',
+                            style: GoogleFonts.oswald(
+                                fontSize: titleSize,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.black),
+                          ),
+                          Text(
+                            'Mompean',
+                            style: GoogleFonts.oswald(
+                                fontSize: titleSize,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.black),
+                          ),
+                          Text(
+                            'Ruiz',
+                            style: GoogleFonts.oswald(
+                                fontSize: titleSize,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.black),
+                          ),
+                        ],
+                      ),
+                    ),
+                    FlipWidget(
+                      angle: state.angle,
+                      child: const MainProfileImage(),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 1000,
+                ),
+              ],
+            ),
           ),
         ),
       ),

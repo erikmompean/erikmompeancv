@@ -8,6 +8,7 @@ class CurriculumStateLoading extends CurriculumState {}
 
 class CurriculumStateIdle extends CurriculumState {
   final ScrollController scrollController;
+  final double angle;
 
-  CurriculumStateIdle(this.scrollController);
+  CurriculumStateIdle(this.scrollController, this.angle);
 }
