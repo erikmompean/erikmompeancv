@@ -13,7 +13,7 @@ class FlipWidget extends StatefulWidget {
 class FlipWidgetState extends State<FlipWidget> {
   @override
   Widget build(BuildContext context) {
-    final angle = -30 / 180 * pi;
+    const angle = 30 / 180 * pi;
     var transform = Matrix4.identity()
       ..setEntry(3, 2, 0.001)
       ..rotateY(angle);

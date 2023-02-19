@@ -1,6 +1,7 @@
-import 'package:erikmompean/bloc/curriculum_screen_bloc/Curriculum_screen_event.dart';
-import 'package:erikmompean/bloc/curriculum_screen_bloc/Curriculum_screen_state.dart';
 import 'package:erikmompean/bloc/curriculum_screen_bloc/curriculum_screen_bloc.dart';
+import 'package:erikmompean/bloc/curriculum_screen_bloc/curriculum_screen_event.dart';
+import 'package:erikmompean/bloc/curriculum_screen_bloc/curriculum_screen_state.dart';
+import 'package:erikmompean/ui/widgets/app_loader.dart';
 import 'package:erikmompean/ui/widgets/app_logo.dart';
 import 'package:erikmompean/ui/widgets/app_text.dart';
 import 'package:erikmompean/ui/widgets/flip_widget.dart';
@@ -21,17 +22,21 @@ class CurriculumScreen extends StatelessWidget {
       body: BlocBuilder(
           bloc: bloc,
           builder: (context, state) {
-            if (state is CurriculumScreenStateInit) {
-              bloc.add(CurriculumScreenInitializeEvent());
+            if (state is CurriculumStateInit) {
+              bloc.add(CurriculumInitializeEvent());
+            }
+            if (state is CurriculumStateIdle) {
+              return body(context, state);
             }
 
-            return body(context);
+            return const Center(child: AppLoader());
           }),
     );
   }
 
-  Widget body(BuildContext context) {
+  Widget body(BuildContext context, CurriculumStateIdle state) {
     return SingleChildScrollView(
+      controller: state.scrollController,
       physics: const BouncingScrollPhysics(),
       child: SafeArea(
         child: Padding(
@@ -49,9 +54,12 @@ class CurriculumScreen extends StatelessWidget {
               ),
               Row(
                 children: [
-                  leftPanel(),
-                  FlipWidget(child: MainProfileImage()),
+                  rightPanel(),
+                  const FlipWidget(child: MainProfileImage()),
                 ],
+              ),
+              const SizedBox(
+                height: 1000,
               ),
             ],
           ),

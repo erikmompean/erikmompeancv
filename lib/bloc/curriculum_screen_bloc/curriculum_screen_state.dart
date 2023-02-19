@@ -1,8 +1,13 @@
+import 'package:flutter/material.dart';
 
-abstract class CurriculumScreenState {}
+abstract class CurriculumState {}
 
-class CurriculumScreenStateInit extends CurriculumScreenState {}
+class CurriculumStateInit extends CurriculumState {}
 
-class CurriculumScreenStateLoading extends CurriculumScreenState {}
+class CurriculumStateLoading extends CurriculumState {}
 
-class CurriculumScreenStateIdle extends CurriculumScreenState {}
+class CurriculumStateIdle extends CurriculumState {
+  final ScrollController scrollController;
+
+  CurriculumStateIdle(this.scrollController);
+}

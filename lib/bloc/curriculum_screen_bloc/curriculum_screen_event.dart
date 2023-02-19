@@ -1,7 +1,7 @@
-class CurriculumScreenEvent {}
+class CurriculumEvent {}
 
-class CurriculumScreenInitializeEvent extends CurriculumScreenEvent {}
+class CurriculumInitializeEvent extends CurriculumEvent {}
 
-class CurriculumScreenLoadedEvent extends CurriculumScreenEvent {}
+class CurriculumLoadedEvent extends CurriculumEvent {}
 
-class CurriculumScreenLoadingEvent extends CurriculumScreenEvent {}
+class CurriculumLoadingEvent extends CurriculumEvent {}
