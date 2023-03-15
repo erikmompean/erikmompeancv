@@ -7,7 +7,6 @@ import 'package:erikmompean/ui/widgets/app_text.dart';
 import 'package:erikmompean/ui/widgets/flip_widget.dart';
 import 'package:erikmompean/ui/widgets/main_profile_image.dart';
 import 'package:erikmompean/utils/app_colors.dart';
-import 'package:erikmompean/utils/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -39,9 +38,9 @@ class CurriculumScreen extends StatelessWidget {
 
   Widget body(BuildContext context, CurriculumStateIdle state,
       CurriculumScreenBloc bloc) {
+    double width = MediaQuery.of(context).size.width;
     return NotificationListener(
       onNotification: (notification) {
-        print(state.scrollController.position.pixels);
         bloc.add(CurriculumScrollUpdatedEvent(
             scrollPosition: state.scrollController.position.pixels));
         return true;
@@ -51,8 +50,9 @@ class CurriculumScreen extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.symmetric(horizontal: width * 0.2),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -102,6 +102,36 @@ class CurriculumScreen extends StatelessWidget {
                     ),
                   ],
                 ),
+                const SizedBox(
+                  height: 40,
+                ),
+                Text(
+                  'Senior Flutter Developer',
+                  style: GoogleFonts.oswald(
+                      fontSize: 50,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.black),
+                ),
+                Text(
+                  'Con mas de 6 años de experiencia',
+                  style: GoogleFonts.oswald(
+                    fontSize: 26,
+                    fontWeight: FontWeight.w700,
+                    color: const Color(0xFFEC6831),
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  'Experiencia Profesional',
+                  style: GoogleFonts.oswald(
+                    fontSize: 50,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black,
+                  ),
+                ),
+                const Divider(),
                 const SizedBox(
                   height: 1000,
                 ),

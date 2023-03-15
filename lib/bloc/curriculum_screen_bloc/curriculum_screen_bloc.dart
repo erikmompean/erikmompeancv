@@ -22,11 +22,10 @@ class CurriculumScreenBloc extends Bloc<CurriculumEvent, CurriculumState> {
     double angle = event.scrollPosition / 8;
 
     if ((event.scrollPosition - lastScroll) > 50) {
-      // int loops = (event.scrollPosition - lastScroll).round();
 
       for (var i = lastScroll; i < event.scrollPosition; i++) {
         angle = i / 8;
-        await Future.delayed(Duration(milliseconds: 1));
+        await Future.delayed(const Duration(milliseconds: 1));
         if (angle > 30) {
           angle = 30;
         }
